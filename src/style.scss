@@ -1,0 +1,228 @@
+$desaturated-red: hsl(0, 36%, 70%);
+$soft-red: hsl(0, 93%, 68%);
+
+$dark-greyish-red: hsl(0, 6%, 24%);
+
+$gradient-one: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+$gradient-two: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+
+$base-font-size: 16px;
+
+$font-family: "Josefin Sans", sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+@keyframes autofill {
+  0%,
+  100% {
+    color: rgba(255, 255, 255, 0);
+    background: transparent;
+  }
+}
+
+%rounded {
+  border-radius: 66px;
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  font-family: $font-family;
+  background-image: url("images/bg-pattern-desktop.svg");
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: $desaturated-red !important;
+}
+
+.text-thick {
+  font-weight: 600;
+  color: $dark-greyish-red;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  &-logo {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    img {
+      height: 24px;
+    }
+  }
+  &-image {
+    img {
+      width: 100%;
+    }
+  }
+  &-content {
+    text-align: center;
+    color: $desaturated-red;
+  }
+  &-text-container {
+    padding: 28px;
+    background: $gradient-one;
+    h1 {
+      text-transform: uppercase;
+      font-size: 56px;
+      font-weight: 300;
+      margin-bottom: 0;
+      letter-spacing: 10px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 15px;
+    }
+  }
+}
+
+.form-input-container {
+  display: flex;
+  @extend %rounded;
+  border: 1px solid $desaturated-red;
+  .sr-only {
+    position: absolute;
+    left: -29999px;
+  }
+  .error-icon {
+    display: none;
+    margin: calc(1em - 2px) 1em;
+
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 1em;
+    height: 1em;
+  }
+  input {
+    border: none;
+    flex-grow: 1;
+    padding: 1em 2em;
+    background-color: transparent;
+    transition: all 300ms;
+    @extend %rounded;
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $desaturated-red;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: $desaturated-red;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: $desaturated-red;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    @extend %rounded;
+    padding: 1em 3em;
+    background: $gradient-two;
+    border: none;
+    margin: -1px -1px -1px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px hsla(0, 36%, 70%, 0.74);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    &-logo {
+      grid-row: 1;
+      grid-column: 1/13;
+    }
+    &-image {
+      grid-row: 2/13;
+      grid-column: 1/13;
+    }
+    &-content {
+      text-align: left;
+      grid-column: 1/7;
+      grid-row: 7/13;
+    }
+    &-text-container {
+      padding: 48px;
+      h1 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero {
+    line-height: 1.2;
+    &-logo {
+      padding: 0;
+      padding-left: 58px;
+      grid-row: 1/4;
+      grid-column: 2/7;
+    }
+    &-image {
+      grid-row: 1/13;
+      grid-column: 8/13;
+    }
+    &-content {
+      text-align: left;
+      grid-column: 2/6;
+      grid-row: 3/13;
+      display: flex;
+      align-items: center;
+    }
+    &-text-container {
+      background: transparent;
+      padding: 0;
+      padding-left: 58px;
+      h1 {
+        margin-top: 0;
+      }
+
+      .form-input-container {
+        margin: 58px 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.error-text {
+  display: none;
+  text-align: left;
+  color: $soft-red;
+  margin: 0.5em 0;
+}
+
+.input-error {
+  border-color: $soft-red;
+  .error-icon {
+    display: block;
+  }
+  & + .error-text {
+    display: block;
+  }
+}
