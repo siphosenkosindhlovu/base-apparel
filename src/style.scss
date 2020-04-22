@@ -32,6 +32,8 @@ html {
 body {
   font-family: $font-family;
   background-image: url("images/bg-pattern-desktop.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0;
   padding: 0;
 }
@@ -152,13 +154,21 @@ input:-webkit-autofill:active {
   .hero {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
+    height: 100vh;
     &-logo {
       grid-row: 1;
       grid-column: 1/13;
+      img {
+        height: 32px;
+      }
     }
     &-image {
       grid-row: 2/13;
       grid-column: 1/13;
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
     }
     &-content {
       text-align: left;
